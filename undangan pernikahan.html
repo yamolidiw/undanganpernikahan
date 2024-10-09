@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input[type="password"] {
+            padding: 10px;
+            width: 200px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #6200EA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .chat-room {
+            display: none;
+            text-align: left;
+        }
+        .bubble {
+            background-color: #6200EA;
+            color: white;
+            border-radius: 20px;
+            padding: 15px;
+            margin-top: 20px;
+            display: inline-block;
+            max-width: 70%;
+        }
+        .next-button {
+            display: none;
+            margin-top: 20px;
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="pin-container">
+        <h2>Enter your PIN</h2>
+        <input type="password" id="pin-input" maxlength="6" placeholder="Enter PIN">
+        <br>
+        <button onclick="validatePin()">Submit</button>
+    </div>
+
+    <div class="container chat-room" id="chat-room">
+        <h2 id="room-title">Chat Room</h2>
+        <div class="bubble" id="bubble1">92080 adalah kode OTP Anda. Demi keamanan, jangan bagikan kode ini.</div>
+        <button class="next-button" id="next-button" onclick="showNextBubble()">Next</button>
+    </div>
+
+    <script>
+        function validatePin() {
+            const pin = document.getElementById('pin-input').value;
+            if (pin === '250405') {
+                // Sembunyikan halaman input PIN
+                document.getElementById('pin-container').style.display = 'none';
+                
+                // Tampilkan chat room dengan pesan pertama
+                document.getElementById('chat-room').style.display = 'block';
+                document.getElementById('room-title').textContent = 'Room Chat: Undangan Pernikahan';
+
+                // Tampilkan tombol Next setelah 2 detik
+                setTimeout(() => {
+                    document.getElementById('next-button').style.display = 'inline-block';
+                }, 2000); // Jeda 2 detik
+            } else {
+                alert('Invalid PIN. Try again.');
+            }
+        }
+
+        function showNextBubble() {
+            // Hilangkan tombol Next setelah dipencet
+            document.getElementById('next-button').style.display = 'none';
+
+            // Ubah judul room chat
+            document.getElementById('room-title').textContent = 'Room Chat: 94364';
+
+            // Buat bubble baru dengan pesan tambahan
+            const newBubble = document.createElement('div');
+            newBubble.className = 'bubble';
+            newBubble.innerHTML = '10/10/2024 4:38<br>Nasabah Yth. Akun BNI Mobile Banking Anda telah diretas, sisa saldo anda Rp50.<br>Info lebih lanjut silakan hubungi BNI Call 1500046.';
+
+            // Tambahkan bubble baru ke dalam chat room
+            document.getElementById('chat-room').appendChild(newBubble);
+        }
+    </script>
+</body>
+</html>
